@@ -51,40 +51,40 @@ Follow these steps to get your Zero Waste Lifestyle platform up and running on y
 
 1.  **Clone the repository:**
 
-    \`\`\`bash
+    ```bash
     git clone https://github.com/your-username/zero-waste-lifestyle.git
     cd zero-waste-lifestyle
-    \`\`\`
+    ```
 
 2.  **Install dependencies:**
 
-    \`\`\`bash
+   ```bash
     npm install
     # or
-    # yarn install
+    yarn install
     # or
-    # pnpm install
-    \`\`\`
+    pnpm install
+   ```
 
 3.  **Set up Environment Variables:**
     Create a `.env.local` file in the root of your project (where `package.json` is located) and add your Groq API key:
 
-    \`\`\`env
+```env
     LLAMA_API_KEY=gsk_YOUR_GROQ_API_KEY_HERE
-    \`\`\`
+```
     **Important:** Replace `gsk_YOUR_GROQ_API_KEY_HERE` with your actual API key obtained from the [Groq Console](https://console.groq.com/keys). Ensure there are no extra spaces.
 
 ### Running the Development Server
 
 1.  **Start the development server:**
 
-    \`\`\`bash
-    npm run dev
+    ```bash
+    npm install
     # or
-    # yarn dev
+    yarn install
     # or
-    # pnpm dev
-    \`\`\`
+    pnpm install
+    ```
 
 2.  Open your browser and navigate to `http://localhost:3000`.
 
@@ -94,55 +94,61 @@ You should now see the Zero Waste Lifestyle website running locally!
 
 Here's a brief overview of the main directories and files:
 
-\`\`\`
+## 📂 Project Structure
+
+```text
 zero-waste-lifestyle/
 ├── app/
 │   ├── api/
 │   │   └── chat/
-│   │       └── route.ts          # AI Chatbot API route (server-side logic)
-│   ├── chat/
-│   │   └── page.tsx              # Dedicated Chatbot page
-│   ├── checklist/
-│   │   └── page.tsx              # Personal Sustainability Checklist page
-│   ├── categories/
-│   │   └── page.tsx              # Waste Categories Explained page
-│   ├── learn/
-│   │   └── page.tsx              # Articles & Tutorials page
-│   ├── quiz/
-│   │   └── page.tsx              # Quiz page
-│   ├── videos/
-│   │   └── page.tsx              # Video Library page
-│   ├── progress/
-│   │   └── page.tsx              # User Progress Tracker page
-│   ├── calculator/
-│   │   └── page.tsx              # Sustainability Impact Calculator page
+│   │       └── route.ts
 │   ├── blog/
-│   │   └── page.tsx              # Blog page
-│   ├── stories/
-│   │   └── page.tsx              # Success Stories page
-│   ├── tips/
-│   │   └── page.tsx              # Tips & Tricks page
+│   │   └── page.tsx
+│   ├── calculator/
+│   │   └── page.tsx
+│   ├── categories/
+│   │   └── page.tsx
+│   ├── checklist/
+│   │   └── page.tsx
+│   ├── chat/
+│   │   └── page.tsx
+│   ├── learn/
+│   │   └── page.tsx
 │   ├── newsletter/
-│   │   └── page.tsx              # Newsletter Signup page
-│   ├── globals.css               # Global Tailwind CSS styles
-│   └── layout.tsx                # Root layout for the application
+│   │   └── page.tsx
+│   ├── progress/
+│   │   └── page.tsx
+│   ├── quiz/
+│   │   └── page.tsx
+│   ├── stories/
+│   │   └── page.tsx
+│   ├── tips/
+│   │   └── page.tsx
+│   ├── videos/
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
 ├── components/
-│   ├── ui/                       # shadcn/ui components (e.g., Button, Card, Input)
-│   │   └── ...
-│   ├── navbar.tsx                # Main navigation bar
-│   ├── footer.tsx                # Global footer
-│   └── waste-bot.tsx             # Floating AI Chatbot component
+│   ├── ui/
+│   ├── navbar.tsx
+│   ├── footer.tsx
+│   └── waste-bot.tsx
 ├── data/
-│   └── waste-categories.json     # Sample data for waste categories
-├── public/
-│   └── placeholder.svg           # Placeholder images
+│   └── waste-categories.json
 ├── lib/
-│   └── utils.ts                  # Utility functions (e.g., `cn` for Tailwind classes)
-├── next.config.mjs               # Next.js configuration
-├── package.json                  # Project dependencies and scripts
-├── tailwind.config.ts            # Tailwind CSS configuration
-└── tsconfig.json                 # TypeScript configuration
-\`\`\`
+│   └── utils.ts
+├── public/
+│   ├── placeholder.svg
+│   └── icons/
+├── .env.local
+├── next.config.mjs
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
+```
+
 
 ## 🛠️ Customization and Extension
 
