@@ -1,0 +1,137 @@
+{
+  "categories": [
+    {
+      "id": "recyclable",
+      "name": "Recyclable Materials",
+      "description": "Items that can be processed into new products through recycling programs",
+      "color": "#10B981",
+      "items": [
+        {
+          "name": "Plastic Type 1 - PET",
+          "description": "Polyethylene Terephthalate - commonly used in water bottles and food containers",
+          "examples": ["Water bottles", "Soda bottles", "Peanut butter jars", "Salad containers"],
+          "disposal": "Rinse clean, remove caps and labels, place in recycling bin",
+          "tips": "Most widely accepted plastic in recycling programs",
+          "recyclable": true
+        },
+        {
+          "name": "Plastic Type 2 - HDPE",
+          "description": "High-Density Polyethylene - used in milk jugs and detergent bottles",
+          "examples": ["Milk jugs", "Detergent bottles", "Shampoo bottles", "Yogurt containers"],
+          "disposal": "Rinse clean and place in recycling bin",
+          "tips": "Very recyclable and often made into new bottles",
+          "recyclable": true
+        },
+        {
+          "name": "Paper & Cardboard",
+          "description": "Clean paper products without plastic coating",
+          "examples": ["Newspapers", "Magazines", "Cardboard boxes", "Office paper", "Cereal boxes"],
+          "disposal": "Keep dry, remove any plastic components, place in paper recycling",
+          "tips": "Contaminated paper cannot be recycled - keep clean and dry",
+          "recyclable": true
+        },
+        {
+          "name": "Glass Containers",
+          "description": "Glass bottles and jars can be recycled indefinitely",
+          "examples": ["Wine bottles", "Beer bottles", "Jam jars", "Sauce jars"],
+          "disposal": "Remove lids, rinse clean, place in glass recycling",
+          "tips": "Glass can be recycled endlessly without quality loss",
+          "recyclable": true
+        },
+        {
+          "name": "Aluminum Cans",
+          "description": "Highly valuable recyclable metal containers",
+          "examples": ["Soda cans", "Beer cans", "Food cans", "Aluminum foil"],
+          "disposal": "Rinse clean, crushing optional, place in metal recycling",
+          "tips": "Aluminum recycling saves 95% of energy compared to new production",
+          "recyclable": true
+        }
+      ]
+    },
+    {
+      "id": "compostable",
+      "name": "Compostable Organic Waste",
+      "description": "Organic materials that can decompose naturally into nutrient-rich soil",
+      "color": "#F59E0B",
+      "items": [
+        {
+          "name": "Fruit & Vegetable Scraps",
+          "description": "Fresh produce waste that composts easily",
+          "examples": ["Apple cores", "Banana peels", "Vegetable trimmings", "Citrus rinds"],
+          "disposal": "Add to home compost bin or municipal organic waste collection",
+          "tips": "Chop large pieces for faster decomposition",
+          "recyclable": false
+        }
+      ]
+    },
+    {
+      "id": "hazardous",
+      "name": "Hazardous Waste",
+      "description": "Materials that require special handling due to toxicity or danger",
+      "color": "#EF4444",
+      "items": [
+        {
+          "name": "Batteries",
+          "description": "Contains heavy metals and chemicals that can leak into the environment",
+          "examples": ["Car batteries", "Rechargeable batteries", "Single-use batteries"],
+          "disposal": "Take to designated hazardous waste collection sites",
+          "tips": "Never throw batteries in regular trash - they can cause fires and pollution",
+          "recyclable": false
+        },
+        {
+          "name": "Paints & Solvents",
+          "description": "Includes oil-based paints, thinners, and solvents that are toxic",
+          "examples": ["Oil paints", "Paint thinners", "Solvents", "Varnishes"],
+          "disposal": "Bring to hazardous waste drop-off locations",
+          "tips": "Check local guidelines for proper disposal methods",
+          "recyclable": false
+        }
+      ]
+    },
+    {
+      "id": "e-waste",
+      "name": "E-Waste",
+      "description": "Electronic devices that can be recycled or reused",
+      "color": "#3B82F6",
+      "items": [
+        {
+          "name": "Old Electronics",
+          "description": "Devices that are no longer in use or broken",
+          "examples": ["Old smartphones", "Broken laptops", "Unused tablets", "Old TVs"],
+          "disposal": "Take to e-waste recycling centers or special collection events",
+          "tips": "Many components can be reused or recycled - never throw in regular trash",
+          "recyclable": true
+        },
+        {
+          "name": "Batteries & Chargers",
+          "description": "Includes chargers and batteries from electronic devices",
+          "examples": ["Phone chargers", "Laptop chargers", "Old batteries"],
+          "disposal": "Recycle at e-waste centers or designated drop-off points",
+          "tips": "Check for local e-waste recycling programs",
+          "recyclable": true
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "name": "General Waste",
+      "description": "Items that cannot be recycled or composted and must go to landfill",
+      "color": "#9CA3AF",
+      "items": [
+        {
+          "name": "Non-Recyclable Plastics",
+          "description": "Plastics that are not accepted in recycling programs",
+          "examples": ["Plastic bags", "Food wrappers", "Polystyrene foam", "Plastic straws"],
+          "disposal": "Place in general waste bin",
+          "tips": "Check local guidelines as some areas have special collection for plastic bags",
+          "recyclable": false
+        },
+        {
+          "name": "Ceramics & Porcelain",
+          "description": "Items made of ceramic or porcelain that cannot be recycled",
+          "examples": ["Broken dishes", "Ceramic tiles", "Porcelain figurines"],
+          "disposal": "Place in general waste bin",
+          "tips": "Wrap sharp pieces to prevent injury when disposing",
+          "recyclable": false
+        }
+      ]}
