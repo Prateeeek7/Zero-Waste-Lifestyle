@@ -18,11 +18,11 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/learn" },
-    { name: "Categories", href: "/categories" },
-    { name: "Quiz", href: "/quiz" },
-    { name: "Checklist", href: "/checklist" },
-    { name: "Videos", href: "/videos" },
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "Map", href: "/map" },
+    { name: "Badges", href: "/badges" },
+    { name: "Leaderboard", href: "/leaderboard" },
+    { name: "News", href: "/news" },
   ]
 
   return (

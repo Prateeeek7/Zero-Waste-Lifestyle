@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import "leaflet/dist/leaflet.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   keywords:
     "zero waste, sustainability, recycling, composting, eco-friendly, green living, waste reduction, environmental education",
   authors: [{ name: "Zero Waste Lifestyle Team" }],
+  manifest: "/manifest.json",
   openGraph: {
     title: "Zero Waste Lifestyle - Sustainable Living Education",
     description:
@@ -32,7 +34,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

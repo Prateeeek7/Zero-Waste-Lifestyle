@@ -1,83 +1,52 @@
-import { streamText } from "ai" // Removed StreamingTextResponse from import
-import { createOpenAI } from "@ai-sdk/openai"
+import { streamText } from "ai"
+import { createGroq } from "@ai-sdk/groq"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json()
-
-    // --- ENHANCED DEBUGGING LOGS ---
-    console.log("--- Chat API Request Start ---")
-    console.log("Received chat request at:", new Date().toISOString())
-    console.log("Incoming messages count:", messages.length)
-    console.log("Last user message:", messages[messages.length - 1]?.content || "[No user message]")
+    const { messages, userId } = await req.json()
 
     const apiKey = process.env.LLAMA_API_KEY
-    console.log(
-      "LLAMA_API_KEY status:",
-      apiKey ? "Loaded (first 5 chars: " + apiKey.substring(0, 5) + "...)" : "NOT LOADED",
-    )
 
     if (!apiKey) {
-      console.error(
-        "ERROR: LLAMA_API_KEY is missing or undefined. Please ensure it's set in your .env.local file and your server is restarted.",
+      console.error("LLAMA_API_KEY is not configured")
+      return NextResponse.json(
+        { error: "Server configuration error: API key is not set." },
+        { status: 500 }
       )
-      return NextResponse.json({ error: "Server configuration error: LLAMA_API_KEY is not set." }, { status: 500 })
     }
 
-    const baseURL = "https://api.groq.com/openai/v1"
-    const modelName = "llama3-70b-8192"
-    console.log("Attempting to initialize AI model with:")
-    console.log("  Base URL:", baseURL)
-    console.log("  Model Name:", modelName)
+    // Get user context if userId provided
+    let userContext = ""
+    if (userId) {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      
+      if (supabaseUrl && supabaseKey) {
+        const { createClient } = await import("@supabase/supabase-js")
+        const supabase = createClient(supabaseUrl, supabaseKey)
+        
+        const { data: logs } = await supabase
+          .from("waste_logs")
+          .select("category, weight_kg, logged_at")
+          .eq("user_id", userId)
+          .order("logged_at", { ascending: false })
+          .limit(10)
 
-    // --- TEMPORARY DIRECT FETCH TEST (Keep for debugging API key issues) ---
-    console.log("--- Running direct Groq API test ---")
-    try {
-      const testResponse = await fetch(`${baseURL}/chat/completions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: modelName,
-          messages: [{ role: "user", content: "Hello, test message." }],
-          max_tokens: 50, // Keep it short for a quick test
-        }),
-      })
-
-      if (testResponse.ok) {
-        const testData = await testResponse.json()
-        console.log(
-          "Direct Groq API test SUCCESS! Response snippet:",
-          testData.choices[0]?.message?.content.substring(0, 50) + "...",
-        )
-      } else {
-        const errorText = await testResponse.text()
-        console.error(`Direct Groq API test FAILED! Status: ${testResponse.status}, Error: ${errorText}`)
+        if (logs && logs.length > 0) {
+          const recentCategories = logs.map(l => l.category).join(", ")
+          const totalWeight = logs.reduce((sum, l) => sum + l.weight_kg, 0)
+          userContext = `\n\nUser Context: This user has recently logged ${logs.length} waste entries, totaling ${totalWeight.toFixed(2)}kg. Categories: ${recentCategories}. Provide personalized advice based on their activity.`
+        }
       }
-    } catch (testError) {
-      console.error("Direct Groq API test encountered a network error:", testError)
-    }
-    console.log("--- Direct Groq API test finished ---")
-    // --- END TEMPORARY DIRECT FETCH TEST ---
-
-    let llama
-    try {
-      llama = createOpenAI({
-        apiKey: apiKey,
-        baseURL: baseURL,
-      })
-      console.log("AI model (llama) initialized successfully.")
-    } catch (initError) {
-      console.error("ERROR: Failed to initialize AI model (createOpenAI).", initError)
-      return NextResponse.json({ error: "AI model initialization failed." }, { status: 500 })
     }
 
-    console.log("Attempting to stream text via AI SDK...")
+    const groq = createGroq({
+      apiKey: apiKey,
+    })
+
     const result = await streamText({
-      model: llama(modelName),
+      model: groq("llama3-70b-8192") as any,
       system: `You are a Zero Waste AI Assistant powered by Meta LLaMA 3, an expert in sustainable living, waste management, and environmental conservation. Your role is to help users:
 
 🌱 **Waste Disposal Guidance**: Provide specific instructions for disposing of various items safely and sustainably
@@ -103,25 +72,18 @@ export async function POST(req: Request) {
 - For food waste: "Fruit peels and vegetable scraps can go in home compost. Avoid meat/dairy in home bins - use municipal composting if available."
 - For plastics: "Check the recycling number: #1 (PET) and #2 (HDPE) are widely recyclable. Clean containers and remove labels first."
 
-Always prioritize environmental safety and provide practical solutions that users can actually implement in their daily lives.`,
+Always prioritize environmental safety and provide practical solutions that users can actually implement in their daily lives.${userContext}`,
       messages,
       maxTokens: 1000,
       temperature: 0.7,
     })
-    console.log("streamText call initiated successfully.")
 
-    // --- CORRECT WAY TO RETURN STREAMING RESPONSE FOR AI SDK v3+ ---
-    return result.toDataStreamResponse() // This method directly creates and returns the streaming Response
-    // --- END CORRECT WAY ---
+    return result.toDataStreamResponse()
   } catch (error) {
-    console.error("--- Chat API Request FAILED ---")
-    console.error("Caught an error in POST handler:", error)
-    // Return a more informative error to the client
+    console.error("Chat API error:", error)
     return NextResponse.json(
-      { error: "Failed to process request. Check your server terminal for detailed logs." },
-      { status: 500 },
+      { error: "Failed to process chat request. Please try again." },
+      { status: 500 }
     )
-  } finally {
-    console.log("--- Chat API Request End ---")
   }
 }

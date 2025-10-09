@@ -22,15 +22,15 @@ export default function CalculatorPage() {
   // Environmental and financial assumptions (per unit)
   const ASSUMPTIONS = {
     plasticBottle: {
-      cost: 1.5, // USD
+      cost: 20, // INR (Indian Rupees)
       co2_g: 80, // grams of CO2
     },
     plasticBag: {
-      cost: 0.1, // USD (if charged)
+      cost: 5, // INR (if charged)
       co2_g: 10, // grams of CO2
     },
     disposableCup: {
-      cost: 0.5, // USD (extra charge or perceived value)
+      cost: 15, // INR (coffee cup)
       co2_g: 50, // grams of CO2
     },
   }
@@ -202,7 +202,7 @@ export default function CalculatorPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                      ${result.totalMoneySaved.toLocaleString()}
+                      ₹{result.totalMoneySaved.toLocaleString('en-IN')}
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">in your pocket</p>
                   </CardContent>

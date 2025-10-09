@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { useChat } from "ai/react"
+import { supabase } from "@/lib/supabase"
 
 interface Message {
   id: string
@@ -23,14 +24,26 @@ export default function WasteBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  const [userId, setUserId] = useState<string | null>(null)
+
+  useEffect(() => {
+    // Get user ID for personalized context
+    const getUserId = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) setUserId(user.id)
+    }
+    getUserId()
+  }, [])
+
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "/api/chat",
+    body: { userId },
     initialMessages: [
       {
         id: "1",
         role: "assistant",
         content:
-          "Hi! I'm your Zero Waste AI Assistant. I can help you with waste disposal questions, sustainability tips, and eco-friendly alternatives. You can also upload images of items you're unsure how to dispose of!",
+          "Hi! I'm your Zero Waste AI Assistant. I can help you with waste disposal questions, sustainability tips, and eco-friendly alternatives. I also have access to your waste logging history to provide personalized recommendations!",
       },
     ],
   })

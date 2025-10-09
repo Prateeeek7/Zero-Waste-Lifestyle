@@ -15,16 +15,16 @@ export default function Footer() {
       { name: "Quiz", href: "/quiz" },
     ],
     Tools: [
-      { name: "AI Assistant", href: "/chat" },
-      { name: "Checklist", href: "/checklist" },
-      { name: "Progress Tracker", href: "/progress" },
+      { name: "Dashboard", href: "/dashboard" },
+      { name: "AI Classifier", href: "/classifier" },
+      { name: "Recycling Map", href: "/map" },
       { name: "Calculator", href: "/calculator" },
     ],
     Community: [
-      { name: "Blog", href: "/blog" },
-      { name: "Success Stories", href: "/stories" },
-      { name: "Tips & Tricks", href: "/tips" },
-      { name: "Newsletter", href: "/newsletter" },
+      { name: "Leaderboard", href: "/leaderboard" },
+      { name: "Badges", href: "/badges" },
+      { name: "News", href: "/news" },
+      { name: "Analytics", href: "/analytics" },
     ],
   }
 

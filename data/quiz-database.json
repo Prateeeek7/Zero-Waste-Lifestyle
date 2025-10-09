@@ -1,0 +1,1292 @@
+{
+  "quizCategories": [
+    {
+      "id": "basics",
+      "name": "Basics of Waste",
+      "description": "Fundamental concepts of waste management",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is waste management?",
+          "options": [
+            "Process of making waste",
+            "Proper collection, treatment, and disposal of waste",
+            "Storing waste indefinitely",
+            "Ignoring waste materials"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Waste management involves the proper collection, treatment, and disposal of waste materials to minimize environmental impact."
+        },
+        {
+          "id": 2,
+          "question": "Which of the following is not a type of waste?",
+          "options": [
+            "Solid",
+            "Liquid",
+            "Gaseous",
+            "Invisible"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Invisible is not a type of waste. Waste can be solid, liquid, or gaseous."
+        },
+        {
+          "id": 3,
+          "question": "The 3Rs in waste management stand for —",
+          "options": [
+            "Reduce, Reuse, Recycle",
+            "Rebuild, Repair, Recreate",
+            "Remove, Restore, Replace",
+            "Reuse, Repaint, Reclaim"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The 3Rs are Reduce (minimize waste), Reuse (use items again), and Recycle (convert waste into new products)."
+        },
+        {
+          "id": 4,
+          "question": "Which type of waste is produced from homes and offices?",
+          "options": [
+            "Biomedical waste",
+            "Municipal solid waste",
+            "Industrial waste",
+            "Radioactive waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Municipal solid waste (MSW) is generated from homes, offices, and commercial establishments."
+        },
+        {
+          "id": 5,
+          "question": "What is biodegradable waste?",
+          "options": [
+            "Waste that never decomposes",
+            "Waste that decomposes naturally by microorganisms",
+            "Waste that requires chemical treatment",
+            "Waste made of metals"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Biodegradable waste can be broken down naturally by microorganisms into simpler substances."
+        },
+        {
+          "id": 6,
+          "question": "Plastic is an example of —",
+          "options": [
+            "Biodegradable waste",
+            "Non-biodegradable waste",
+            "E-waste",
+            "Compostable waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Plastic is non-biodegradable as it takes hundreds of years to decompose naturally."
+        },
+        {
+          "id": 7,
+          "question": "The color code for dry waste bins in India is —",
+          "options": [
+            "Green",
+            "Blue",
+            "Red",
+            "Black"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In India, blue bins are used for dry waste (recyclable materials like paper, plastic, metal)."
+        },
+        {
+          "id": 8,
+          "question": "The color code for wet (biodegradable) waste is —",
+          "options": [
+            "Blue",
+            "Green",
+            "Yellow",
+            "White"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Green bins are used for wet waste (biodegradable materials like food scraps, garden waste)."
+        },
+        {
+          "id": 9,
+          "question": "What is composting?",
+          "options": [
+            "Burning waste materials",
+            "Chemical treatment of waste",
+            "Converting organic waste into manure",
+            "Melting plastics"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Composting is the natural process of converting organic waste into nutrient-rich manure through decomposition."
+        },
+        {
+          "id": 10,
+          "question": "What is the first step in waste management?",
+          "options": [
+            "Disposal",
+            "Recycling",
+            "Waste segregation",
+            "Collection"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Waste segregation at source is the first and most important step in effective waste management."
+        }
+      ]
+    },
+    {
+      "id": "segregation",
+      "name": "Segregation & Types",
+      "description": "Understanding different types of waste and segregation methods",
+      "questions": [
+        {
+          "id": 11,
+          "question": "Biomedical waste comes from —",
+          "options": [
+            "Hospitals and clinics",
+            "Schools",
+            "Factories",
+            "Homes only"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Biomedical waste is generated from healthcare facilities like hospitals, clinics, and laboratories."
+        },
+        {
+          "id": 12,
+          "question": "Which waste can be recycled easily?",
+          "options": [
+            "Plastic bags",
+            "Glass bottles",
+            "Used syringes",
+            "Food waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Glass bottles can be recycled easily and repeatedly without losing quality."
+        },
+        {
+          "id": 13,
+          "question": "What is e-waste?",
+          "options": [
+            "Electrical and electronic waste",
+            "Edible waste",
+            "Environmental waste",
+            "Energy waste"
+          ],
+          "correctAnswer": 0,
+          "explanation": "E-waste refers to discarded electrical and electronic equipment like computers, phones, and appliances."
+        },
+        {
+          "id": 14,
+          "question": "Expired medicines should be disposed of in —",
+          "options": [
+            "Green bin",
+            "Blue bin",
+            "Yellow bin",
+            "Mixed with dry waste"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Expired medicines are hazardous waste and should be disposed of in yellow bins or returned to pharmacies."
+        },
+        {
+          "id": 15,
+          "question": "What is landfill?",
+          "options": [
+            "A method to store waste in open space",
+            "A site where waste is buried underground",
+            "A recycling unit",
+            "A composting pit"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A landfill is a designated site where waste is buried underground in a controlled manner."
+        },
+        {
+          "id": 16,
+          "question": "Which of these wastes can cause radiation hazards?",
+          "options": [
+            "Plastic",
+            "Food",
+            "Radioactive waste",
+            "Paper"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Radioactive waste contains radioactive materials that can cause radiation hazards if not handled properly."
+        },
+        {
+          "id": 17,
+          "question": "Hazardous waste includes —",
+          "options": [
+            "Newspaper",
+            "Garden leaves",
+            "Paints and batteries",
+            "Glass bottles"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Hazardous waste includes materials that are toxic, flammable, corrosive, or reactive like paints and batteries."
+        },
+        {
+          "id": 18,
+          "question": "Kitchen waste is —",
+          "options": [
+            "Biodegradable",
+            "Non-biodegradable",
+            "Hazardous",
+            "E-waste"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Kitchen waste like food scraps and vegetable peels is biodegradable and can be composted."
+        },
+        {
+          "id": 19,
+          "question": "Used mobile phones should be disposed of as —",
+          "options": [
+            "Organic waste",
+            "E-waste",
+            "Plastic waste",
+            "Hazardous waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Mobile phones are electronic devices and should be disposed of as e-waste through authorized collection centers."
+        },
+        {
+          "id": 20,
+          "question": "The best way to manage paper waste is —",
+          "options": [
+            "Burn it",
+            "Throw it in dustbin",
+            "Recycle it",
+            "Mix with kitchen waste"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Paper can be easily recycled into new paper products, making it the best way to manage paper waste."
+        }
+      ]
+    },
+    {
+      "id": "recycling",
+      "name": "Recycling & Reuse",
+      "description": "Understanding recycling processes and reuse strategies",
+      "questions": [
+        {
+          "id": 21,
+          "question": "Recycling helps in —",
+          "options": [
+            "Increasing pollution",
+            "Reducing use of raw materials",
+            "Wasting energy",
+            "Increasing landfill sites"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Recycling reduces the need for raw materials and helps conserve natural resources."
+        },
+        {
+          "id": 22,
+          "question": "Which material can be recycled endlessly without losing quality?",
+          "options": [
+            "Plastic",
+            "Paper",
+            "Glass",
+            "Food"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Glass can be recycled indefinitely without losing its quality or purity."
+        },
+        {
+          "id": 23,
+          "question": "What is upcycling?",
+          "options": [
+            "Throwing waste upward",
+            "Creating higher-value products from waste materials",
+            "Decomposing waste faster",
+            "Mixing different wastes"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Upcycling is the process of transforming waste materials into products of higher value or quality."
+        },
+        {
+          "id": 24,
+          "question": "What is the major problem with plastic recycling?",
+          "options": [
+            "It's easy and cheap",
+            "Plastics are of many types and hard to separate",
+            "It improves air quality",
+            "It increases soil fertility"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Different types of plastics have different properties and must be separated before recycling, which is challenging."
+        },
+        {
+          "id": 25,
+          "question": "Reuse means —",
+          "options": [
+            "Throwing waste after one use",
+            "Using items again for the same or new purpose",
+            "Melting materials",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Reuse means using items again, either for the same purpose or for a different purpose."
+        },
+        {
+          "id": 26,
+          "question": "Recycling aluminum saves about ___% of energy compared to making new aluminum.",
+          "options": [
+            "10%",
+            "30%",
+            "50%",
+            "95%"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Recycling aluminum saves about 95% of the energy required to produce new aluminum from raw materials."
+        },
+        {
+          "id": 27,
+          "question": "Which of the following can be reused?",
+          "options": [
+            "Glass jars",
+            "Paper cups",
+            "Plastic bags",
+            "Food waste"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Glass jars can be cleaned and reused for storage or other purposes."
+        },
+        {
+          "id": 28,
+          "question": "Composting of food waste produces —",
+          "options": [
+            "Fertilizer or manure",
+            "Smoke",
+            "Plastic",
+            "Gasoline"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Composting food waste produces nutrient-rich fertilizer or manure that can be used in gardens."
+        },
+        {
+          "id": 29,
+          "question": "What does waste-to-energy mean?",
+          "options": [
+            "Burning waste to produce electricity",
+            "Freezing waste",
+            "Burying waste underground",
+            "Transporting waste overseas"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Waste-to-energy involves burning waste materials to generate electricity or heat."
+        },
+        {
+          "id": 30,
+          "question": "Recycling plastic bottles into fabric is called —",
+          "options": [
+            "Downcycling",
+            "Upcycling",
+            "Biodegrading",
+            "Landfilling"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Converting plastic bottles into fabric is an example of upcycling, creating a higher-value product."
+        }
+      ]
+    },
+    {
+      "id": "environmental",
+      "name": "Environmental Impact",
+      "description": "Understanding the environmental effects of waste management",
+      "questions": [
+        {
+          "id": 31,
+          "question": "Open burning of waste mainly causes —",
+          "options": [
+            "Soil enrichment",
+            "Air pollution",
+            "Noise pollution",
+            "Cooling effect"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Open burning releases harmful pollutants into the air, causing air pollution and health problems."
+        },
+        {
+          "id": 32,
+          "question": "Plastic waste in oceans mainly harms —",
+          "options": [
+            "Birds only",
+            "Marine life",
+            "Plants",
+            "Humans only"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Plastic waste in oceans harms marine life through ingestion, entanglement, and habitat destruction."
+        },
+        {
+          "id": 33,
+          "question": "Landfills produce which harmful gas?",
+          "options": [
+            "Oxygen",
+            "Methane",
+            "Nitrogen",
+            "Helium"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Landfills produce methane, a potent greenhouse gas that contributes to climate change."
+        },
+        {
+          "id": 34,
+          "question": "Improper waste disposal can lead to —",
+          "options": [
+            "Air and water pollution",
+            "Economic growth",
+            "Biodiversity increase",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Improper waste disposal contaminates air, water, and soil, causing environmental and health problems."
+        },
+        {
+          "id": 35,
+          "question": "Burning plastic releases —",
+          "options": [
+            "Carbon dioxide and dioxins",
+            "Pure oxygen",
+            "Only water vapor",
+            "Nitrogen"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Burning plastic releases carbon dioxide and toxic dioxins, which are harmful to human health and the environment."
+        },
+        {
+          "id": 36,
+          "question": "Dumping waste in rivers causes —",
+          "options": [
+            "Water purification",
+            "Water contamination",
+            "More fish growth",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Dumping waste in rivers contaminates water, making it unsafe for drinking and harming aquatic life."
+        },
+        {
+          "id": 37,
+          "question": "Methane from landfills contributes to —",
+          "options": [
+            "Acid rain",
+            "Global warming",
+            "Soil fertility",
+            "Photosynthesis"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Methane is a greenhouse gas that traps heat in the atmosphere, contributing to global warming."
+        },
+        {
+          "id": 38,
+          "question": "Plastic microfibers enter humans mainly through —",
+          "options": [
+            "Air only",
+            "Food and water",
+            "Soil",
+            "Direct skin contact"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Plastic microfibers enter the human body primarily through contaminated food and water."
+        },
+        {
+          "id": 39,
+          "question": "Which country banned single-use plastics in 2022 (India)?",
+          "options": [
+            "USA",
+            "India",
+            "Japan",
+            "France"
+          ],
+          "correctAnswer": 1,
+          "explanation": "India banned single-use plastics in 2022 as part of efforts to reduce plastic pollution."
+        },
+        {
+          "id": 40,
+          "question": "Which type of waste can lead to cancer if improperly handled?",
+          "options": [
+            "Organic",
+            "Hazardous/chemical",
+            "Paper",
+            "Food"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Hazardous and chemical waste can contain carcinogenic substances that may cause cancer if not handled properly."
+        }
+      ]
+    },
+    {
+      "id": "india",
+      "name": "Waste Management in India",
+      "description": "Understanding waste management policies and practices in India",
+      "questions": [
+        {
+          "id": 41,
+          "question": "Swachh Bharat Mission was launched in —",
+          "options": [
+            "2010",
+            "2014",
+            "2019",
+            "2005"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Swachh Bharat Mission was launched by Prime Minister Narendra Modi on October 2, 2014."
+        },
+        {
+          "id": 42,
+          "question": "Who launched Swachh Bharat Mission?",
+          "options": [
+            "Dr. A.P.J. Abdul Kalam",
+            "Narendra Modi",
+            "Indira Gandhi",
+            "Rajiv Gandhi"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Prime Minister Narendra Modi launched the Swachh Bharat Mission on Gandhi Jayanti, 2014."
+        },
+        {
+          "id": 43,
+          "question": "Which Indian city is known as the cleanest (as per Swachh Survekshan)?",
+          "options": [
+            "Delhi",
+            "Indore",
+            "Mumbai",
+            "Chennai"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Indore has consistently been ranked as the cleanest city in India in the Swachh Survekshan rankings."
+        },
+        {
+          "id": 44,
+          "question": "Waste Management Rules in India were updated in —",
+          "options": [
+            "2000",
+            "2016",
+            "2012",
+            "2020"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Solid Waste Management Rules were updated in 2016 to improve waste management practices across India."
+        },
+        {
+          "id": 45,
+          "question": "Plastic Waste Management Rules came into effect in —",
+          "options": [
+            "2011",
+            "2016",
+            "2018",
+            "2022"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Plastic Waste Management Rules were introduced in 2016 to regulate plastic waste management."
+        },
+        {
+          "id": 46,
+          "question": "The organization responsible for pollution control in India is —",
+          "options": [
+            "ISRO",
+            "CPCB",
+            "RBI",
+            "UIDAI"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CPCB (Central Pollution Control Board) is responsible for pollution control and environmental protection in India."
+        },
+        {
+          "id": 47,
+          "question": "\"Wet waste\" mainly contains —",
+          "options": [
+            "Metals and plastics",
+            "Food and garden waste",
+            "Electronic items",
+            "Glass"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Wet waste primarily consists of biodegradable materials like food scraps and garden waste."
+        },
+        {
+          "id": 48,
+          "question": "Waste collection using two different bins is called —",
+          "options": [
+            "Segregation",
+            "Disinfection",
+            "Combustion",
+            "Composting"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Using different bins for different types of waste is called waste segregation."
+        },
+        {
+          "id": 49,
+          "question": "Extended Producer Responsibility (EPR) is applied to —",
+          "options": [
+            "Plastic and e-waste",
+            "Food waste",
+            "Medical waste",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "EPR is applied to plastic and e-waste, making producers responsible for managing their products after use."
+        },
+        {
+          "id": 50,
+          "question": "Which ministry oversees waste management in India?",
+          "options": [
+            "Ministry of Finance",
+            "Ministry of Environment, Forest and Climate Change",
+            "Ministry of Education",
+            "Ministry of Science"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Ministry of Environment, Forest and Climate Change oversees waste management policies in India."
+        }
+      ]
+    },
+    {
+      "id": "composting",
+      "name": "Composting, Organic Waste & Zero Waste Lifestyle",
+      "description": "Understanding composting and sustainable lifestyle practices",
+      "questions": [
+        {
+          "id": 51,
+          "question": "What is vermicomposting?",
+          "options": [
+            "Composting using chemicals",
+            "Composting using earthworms",
+            "Burning organic waste",
+            "Decomposing plastics"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Vermicomposting uses earthworms to break down organic waste into nutrient-rich compost."
+        },
+        {
+          "id": 52,
+          "question": "Which waste is most suitable for composting?",
+          "options": [
+            "Banana peels",
+            "Plastic wrappers",
+            "Glass bottles",
+            "Metal cans"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Banana peels are organic waste that decomposes easily and is perfect for composting."
+        },
+        {
+          "id": 53,
+          "question": "Which of the following improves compost quality?",
+          "options": [
+            "Mixing plastics",
+            "Adding paper and dry leaves",
+            "Spraying pesticides",
+            "Storing in sealed containers"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Adding paper and dry leaves provides carbon and helps balance the compost mixture."
+        },
+        {
+          "id": 54,
+          "question": "Which of the following should not be added to compost?",
+          "options": [
+            "Vegetable peels",
+            "Meat and dairy waste",
+            "Dry leaves",
+            "Coffee grounds"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Meat and dairy waste can attract pests and create odors, so they should not be added to compost."
+        },
+        {
+          "id": 55,
+          "question": "Ideal time to obtain compost in household conditions is —",
+          "options": [
+            "1–2 days",
+            "1–2 weeks",
+            "1–3 months",
+            "1 year"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Under proper conditions, household compost can be ready in 1-3 months."
+        },
+        {
+          "id": 56,
+          "question": "What is the main product of composting?",
+          "options": [
+            "Fertilizer",
+            "Plastic",
+            "Ash",
+            "Oil"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Composting produces nutrient-rich fertilizer that improves soil quality."
+        },
+        {
+          "id": 57,
+          "question": "Zero waste lifestyle aims to —",
+          "options": [
+            "Minimize waste generation",
+            "Promote landfilling",
+            "Increase single-use items",
+            "Ban recycling"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Zero waste lifestyle focuses on minimizing waste generation through conscious consumption and reuse."
+        },
+        {
+          "id": 58,
+          "question": "Which household item is best replaced by a reusable alternative?",
+          "options": [
+            "Metal bottle",
+            "Plastic water bottle",
+            "Ceramic mug",
+            "Cloth bag"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Replacing single-use plastic water bottles with reusable alternatives reduces plastic waste significantly."
+        },
+        {
+          "id": 59,
+          "question": "Which is an example of reducing waste at source?",
+          "options": [
+            "Carrying your own shopping bag",
+            "Using more packaging",
+            "Throwing leftovers",
+            "Burning garbage"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Carrying your own shopping bag reduces the need for plastic bags, preventing waste at the source."
+        },
+        {
+          "id": 60,
+          "question": "Which of these materials takes the longest to decompose?",
+          "options": [
+            "Paper",
+            "Orange peel",
+            "Aluminum can",
+            "Cotton cloth"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Aluminum cans can take 200-500 years to decompose, making them one of the longest-lasting waste materials."
+        }
+      ]
+    },
+    {
+      "id": "ewaste",
+      "name": "E-Waste & Hazardous Waste",
+      "description": "Understanding electronic waste and hazardous materials",
+      "questions": [
+        {
+          "id": 61,
+          "question": "E-waste contains harmful metals such as —",
+          "options": [
+            "Iron and calcium",
+            "Lead and mercury",
+            "Sodium and potassium",
+            "Zinc and copper"
+          ],
+          "correctAnswer": 1,
+          "explanation": "E-waste contains toxic heavy metals like lead and mercury that can harm human health and the environment."
+        },
+        {
+          "id": 62,
+          "question": "Improper e-waste disposal causes —",
+          "options": [
+            "Air freshness",
+            "Soil and groundwater contamination",
+            "Fertilizer increase",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Improper e-waste disposal can contaminate soil and groundwater with toxic chemicals."
+        },
+        {
+          "id": 63,
+          "question": "Which is a safe e-waste disposal method?",
+          "options": [
+            "Open burning",
+            "Burying in backyard",
+            "Returning to authorized collection centers",
+            "Throwing in dry bin"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Authorized collection centers ensure proper handling and recycling of e-waste."
+        },
+        {
+          "id": 64,
+          "question": "CFL bulbs should not be thrown in regular bins because they contain —",
+          "options": [
+            "Water",
+            "Mercury",
+            "Lead",
+            "Carbon dioxide"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CFL bulbs contain mercury, a toxic metal that requires special disposal methods."
+        },
+        {
+          "id": 65,
+          "question": "Which type of waste is most dangerous for health?",
+          "options": [
+            "Plastic bottles",
+            "Hazardous chemical waste",
+            "Paper waste",
+            "Food waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Hazardous chemical waste contains toxic substances that can cause serious health problems."
+        },
+        {
+          "id": 66,
+          "question": "Batteries should be disposed of as —",
+          "options": [
+            "Recyclable waste",
+            "Hazardous waste",
+            "Wet waste",
+            "E-waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Batteries contain toxic chemicals and should be disposed of as hazardous waste."
+        },
+        {
+          "id": 67,
+          "question": "Which metal is found in old mobile phone batteries?",
+          "options": [
+            "Gold",
+            "Lithium",
+            "Aluminum",
+            "Copper"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Modern mobile phone batteries contain lithium, which is valuable but also potentially hazardous."
+        },
+        {
+          "id": 68,
+          "question": "Proper e-waste recycling can recover —",
+          "options": [
+            "Precious metals",
+            "Toxic gases",
+            "Plastics only",
+            "Sand"
+          ],
+          "correctAnswer": 0,
+          "explanation": "E-waste recycling can recover precious metals like gold, silver, and copper."
+        },
+        {
+          "id": 69,
+          "question": "Which organization regulates e-waste rules in India?",
+          "options": [
+            "TRAI",
+            "CPCB",
+            "SEBI",
+            "RBI"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CPCB (Central Pollution Control Board) regulates e-waste management rules in India."
+        },
+        {
+          "id": 70,
+          "question": "Dumping e-waste in landfills leads to —",
+          "options": [
+            "Radiation",
+            "Leaching of heavy metals",
+            "Plant growth",
+            "Cooling effect"
+          ],
+          "correctAnswer": 1,
+          "explanation": "E-waste in landfills can leach heavy metals into soil and groundwater, causing contamination."
+        }
+      ]
+    },
+    {
+      "id": "circular",
+      "name": "Circular Economy & Sustainable Practices",
+      "description": "Understanding circular economy principles and sustainable practices",
+      "questions": [
+        {
+          "id": 71,
+          "question": "What is a circular economy?",
+          "options": [
+            "An economy that discards all waste",
+            "An economy focused on continuous reuse of materials",
+            "A linear \"make-use-dispose\" model",
+            "A trade cycle between countries"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A circular economy focuses on keeping materials in use for as long as possible through reuse, repair, and recycling."
+        },
+        {
+          "id": 72,
+          "question": "Which of the following is an example of circular economy?",
+          "options": [
+            "Disposable plastics",
+            "Product repair and resale",
+            "Burning waste",
+            "Single-use packaging"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Product repair and resale keeps products in use longer, which is a key principle of circular economy."
+        },
+        {
+          "id": 73,
+          "question": "The main goal of circular economy is to —",
+          "options": [
+            "Promote consumerism",
+            "Eliminate waste and pollution",
+            "Increase landfill usage",
+            "Restrict manufacturing"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The main goal of circular economy is to eliminate waste and pollution by keeping materials in use."
+        },
+        {
+          "id": 74,
+          "question": "Producer responsibility in circular economy means —",
+          "options": [
+            "Selling more products",
+            "Taking back used products for recycling",
+            "Ignoring waste",
+            "Using nonrenewable materials"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Producer responsibility means manufacturers take back their products for proper disposal or recycling."
+        },
+        {
+          "id": 75,
+          "question": "What does \"cradle to cradle\" mean?",
+          "options": [
+            "One-time product lifecycle",
+            "Products designed for reuse and recycling",
+            "Short-term consumption model",
+            "Burying materials after use"
+          ],
+          "correctAnswer": 1,
+          "explanation": "\"Cradle to cradle\" means products are designed to be reused or recycled at the end of their life."
+        },
+        {
+          "id": 76,
+          "question": "Which industry produces the highest packaging waste globally?",
+          "options": [
+            "Textile",
+            "Food and beverage",
+            "Construction",
+            "Education"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The food and beverage industry produces the highest amount of packaging waste globally."
+        },
+        {
+          "id": 77,
+          "question": "Which is a renewable alternative to plastic?",
+          "options": [
+            "Bioplastic made from corn starch",
+            "PVC",
+            "Polythene",
+            "Styrofoam"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bioplastics made from renewable sources like corn starch are sustainable alternatives to traditional plastics."
+        },
+        {
+          "id": 78,
+          "question": "Life Cycle Assessment (LCA) helps in —",
+          "options": [
+            "Evaluating environmental impact of a product",
+            "Selling products faster",
+            "Improving advertising",
+            "Ignoring sustainability"
+          ],
+          "correctAnswer": 0,
+          "explanation": "LCA evaluates the environmental impact of a product throughout its entire lifecycle."
+        },
+        {
+          "id": 79,
+          "question": "Extended Producer Responsibility (EPR) ensures —",
+          "options": [
+            "Consumer disposes waste properly",
+            "Producers manage post-consumer waste",
+            "More landfill creation",
+            "All of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "EPR makes producers responsible for managing their products after consumers are done with them."
+        },
+        {
+          "id": 80,
+          "question": "In circular economy, waste is viewed as —",
+          "options": [
+            "A resource",
+            "A burden",
+            "Useless",
+            "Pollution"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In circular economy, waste is seen as a resource that can be reused, recycled, or repurposed."
+        }
+      ]
+    },
+    {
+      "id": "awareness",
+      "name": "Public Awareness, Policy & Practical Scenarios",
+      "description": "Understanding public awareness, policies, and practical waste management scenarios",
+      "questions": [
+        {
+          "id": 81,
+          "question": "Which sector generates the highest municipal solid waste?",
+          "options": [
+            "Households",
+            "Schools",
+            "Factories",
+            "Government offices"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Households generate the highest amount of municipal solid waste."
+        },
+        {
+          "id": 82,
+          "question": "Which is a simple household method to reduce waste?",
+          "options": [
+            "Composting kitchen waste",
+            "Burning garbage",
+            "Mixing all wastes",
+            "Throwing in open drains"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Composting kitchen waste is a simple and effective way to reduce household waste."
+        },
+        {
+          "id": 83,
+          "question": "Which of the following is a non-hazardous waste?",
+          "options": [
+            "Used batteries",
+            "Plastic bottles",
+            "Paint thinner",
+            "Expired drugs"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Clean plastic bottles are non-hazardous waste that can be recycled."
+        },
+        {
+          "id": 84,
+          "question": "Public participation in waste management is important because —",
+          "options": [
+            "It reduces government work",
+            "It ensures community responsibility",
+            "It slows down segregation",
+            "It pollutes more"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Public participation ensures community responsibility and makes waste management more effective."
+        },
+        {
+          "id": 85,
+          "question": "Which is a smart waste management technology?",
+          "options": [
+            "IoT-based bins",
+            "Paper bags",
+            "Compost pits",
+            "Burning waste"
+          ],
+          "correctAnswer": 0,
+          "explanation": "IoT-based smart bins can monitor waste levels and optimize collection routes."
+        },
+        {
+          "id": 86,
+          "question": "Which UN goal includes sustainable waste management?",
+          "options": [
+            "SDG 11 and SDG 12",
+            "SDG 3 and SDG 8",
+            "SDG 7 and SDG 9",
+            "SDG 15 only"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SDG 11 (Sustainable Cities) and SDG 12 (Responsible Consumption) include sustainable waste management."
+        },
+        {
+          "id": 87,
+          "question": "Awareness campaigns like \"Beat Plastic Pollution\" are run by —",
+          "options": [
+            "WHO",
+            "UNEP",
+            "UNESCO",
+            "FAO"
+          ],
+          "correctAnswer": 1,
+          "explanation": "UNEP (United Nations Environment Programme) runs global awareness campaigns like \"Beat Plastic Pollution\"."
+        },
+        {
+          "id": 88,
+          "question": "Which type of economy leads to more waste generation?",
+          "options": [
+            "Linear economy",
+            "Circular economy",
+            "Sharing economy",
+            "Recycling economy"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Linear economy (make-use-dispose) leads to more waste generation compared to circular economy."
+        },
+        {
+          "id": 89,
+          "question": "What is the main challenge in waste segregation in India?",
+          "options": [
+            "Lack of public awareness",
+            "Over-education",
+            "Too many bins",
+            "Availability of land"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Lack of public awareness is the main challenge in implementing effective waste segregation in India."
+        },
+        {
+          "id": 90,
+          "question": "Which is the best example of community-led waste management?",
+          "options": [
+            "Source segregation drives",
+            "Open dumping",
+            "Illegal burning",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Community-led source segregation drives are effective examples of local waste management initiatives."
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "name": "Mixed & Practical General Awareness",
+      "description": "General awareness questions covering various aspects of waste management",
+      "questions": [
+        {
+          "id": 91,
+          "question": "Biogas is mainly composed of —",
+          "options": [
+            "Oxygen",
+            "Methane and carbon dioxide",
+            "Nitrogen",
+            "Hydrogen"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Biogas is primarily composed of methane (50-70%) and carbon dioxide (30-50%)."
+        },
+        {
+          "id": 92,
+          "question": "Which method can generate electricity from waste?",
+          "options": [
+            "Incineration",
+            "Composting",
+            "Landfilling only",
+            "Recycling"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Incineration (waste-to-energy) can generate electricity by burning waste materials."
+        },
+        {
+          "id": 93,
+          "question": "Which of the following items is recyclable?",
+          "options": [
+            "Aluminum foil (clean)",
+            "Food-soiled paper",
+            "Dirty plastic wrapper",
+            "Ceramic plate"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Clean aluminum foil is recyclable, while food-soiled materials and ceramics are not."
+        },
+        {
+          "id": 94,
+          "question": "The term \"solid waste\" excludes —",
+          "options": [
+            "Municipal garbage",
+            "Hazardous liquids",
+            "Industrial scrap",
+            "Paper and plastics"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Solid waste excludes hazardous liquids, which are classified as liquid waste."
+        },
+        {
+          "id": 95,
+          "question": "The \"blue bin\" in waste segregation stands for —",
+          "options": [
+            "Wet waste",
+            "Dry waste",
+            "Hazardous waste",
+            "Medical waste"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Blue bins are used for dry waste (recyclable materials) in waste segregation systems."
+        },
+        {
+          "id": 96,
+          "question": "Segregation of waste helps in —",
+          "options": [
+            "Reducing recycling cost",
+            "Increasing pollution",
+            "Making waste unsorted",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Waste segregation reduces recycling costs by making materials easier to process."
+        },
+        {
+          "id": 97,
+          "question": "Which practice supports a zero-waste goal?",
+          "options": [
+            "Buying bulk groceries without packaging",
+            "Using disposable cups",
+            "Mixing all waste",
+            "Burning trash"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Buying bulk groceries without packaging reduces waste generation, supporting zero-waste goals."
+        },
+        {
+          "id": 98,
+          "question": "The most eco-friendly packaging material is —",
+          "options": [
+            "Paper and cardboard",
+            "Styrofoam",
+            "Plastic film",
+            "Aluminum foil"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Paper and cardboard are biodegradable and recyclable, making them more eco-friendly than plastic alternatives."
+        },
+        {
+          "id": 99,
+          "question": "The main objective of \"waste audit\" is —",
+          "options": [
+            "Identify types and quantity of waste",
+            "Increase waste production",
+            "Reduce awareness",
+            "Bury all waste"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Waste audit helps identify the types and quantities of waste generated to improve management strategies."
+        },
+        {
+          "id": 100,
+          "question": "\"Think globally, act locally\" in waste management means —",
+          "options": [
+            "Ignore local actions",
+            "Solve global waste by local initiatives",
+            "Import waste",
+            "Focus only on national level"
+          ],
+          "correctAnswer": 1,
+          "explanation": "This principle means addressing global waste problems through local community actions and initiatives."
+        }
+      ]
+    }
+  ],
+  "quizSettings": {
+    "questionsPerQuiz": 10,
+    "timeLimit": 300,
+    "passingScore": 70,
+    "maxAttempts": 3,
+    "categories": [
+      "basics",
+      "segregation", 
+      "recycling",
+      "environmental",
+      "india",
+      "composting",
+      "ewaste",
+      "circular",
+      "awareness",
+      "general"
+    ]
+  }
+}
