@@ -85,16 +85,35 @@ export default function SignUpPage() {
       if (authError) throw authError
 
       if (authData.user) {
-        // Create profile in database
-        const { error: profileError } = await supabase.from("profiles").insert({
-          id: authData.user.id,
-          email: formData.email,
-          name: formData.name,
-          eco_level: 1,
-          total_points: 0,
-        })
+        // Check if profile already exists
+        const { data: existingProfile } = await supabase
+          .from("profiles")
+          .select("id")
+          .eq("id", authData.user.id)
+          .single()
 
-        if (profileError) throw profileError
+        // Only create profile if it doesn't exist
+        if (!existingProfile) {
+          const { error: profileError } = await supabase.from("profiles").insert({
+            id: authData.user.id,
+            email: formData.email,
+            name: formData.name,
+            eco_level: 1,
+            total_points: 0,
+            total_co2_saved: 0,
+            total_money_saved: 0,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          })
+
+          if (profileError) {
+            console.error("Profile creation error:", profileError)
+            // Don't throw error if profile already exists from trigger
+            if (profileError.code !== '23505') {
+              throw profileError
+            }
+          }
+        }
 
         setSuccess(true)
         setTimeout(() => router.push("/dashboard"), 2000)
