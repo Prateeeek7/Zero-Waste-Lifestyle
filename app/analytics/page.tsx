@@ -99,7 +99,7 @@ export default function AnalyticsPage() {
       // Simple ML: Analyze patterns
       const categoryTotals: Record<string, number[]> = {}
       
-      logs.forEach((log) => {
+      logs.forEach((log: any) => {
         if (!categoryTotals[log.category]) {
           categoryTotals[log.category] = []
         }

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Leaf, Github, Twitter, Mail, Heart } from "lucide-react"
+import { Leaf, Github, Linkedin, Mail, Heart } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -44,28 +44,43 @@ export default function Footer() {
               Empowering individuals to live sustainably through education, AI-powered guidance, and community support.
               Together, we can create a zero-waste future.
             </p>
-            <div className="flex space-x-4">
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1 }}
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
-              >
-                <Twitter className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1 }}
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
-              >
-                <Github className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1 }}
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
-              >
-                <Mail className="w-5 h-5" />
-              </motion.a>
+            
+            {/* Social Links */}
+            <div className="mt-6">
+              <h3 className="font-semibold text-white text-sm mb-3">Connect With Us</h3>
+              <div className="flex flex-wrap gap-3">
+                <motion.a
+                  href="https://www.linkedin.com/in/pratik-kumar-198172186?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors duration-200 shadow-lg"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  href="https://github.com/Prateeeek7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors duration-200 shadow-lg"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  href="mailto:pratik2002singh@gmail.com"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors duration-200 shadow-lg"
+                  aria-label="Email"
+                >
+                  <Mail className="w-5 h-5" />
+                </motion.a>
+              </div>
             </div>
           </div>
 

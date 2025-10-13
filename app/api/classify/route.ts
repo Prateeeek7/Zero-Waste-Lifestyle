@@ -192,7 +192,7 @@ Be specific and accurate. If uncertain, use "Mixed" category with lower confiden
     console.error("Error details:", {
       message: error.message,
       stack: error.stack,
-      geminiApiKey: geminiApiKey ? "present" : "missing"
+      geminiApiKey: process.env.GOOGLE_GEMINI_API_KEY ? "present" : "missing"
     })
     return NextResponse.json(
       { error: `Failed to classify image: ${error.message}` },

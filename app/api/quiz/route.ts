@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
     }
 
     let correctAnswers = 0
-    const results = []
+    const results: any[] = []
 
     questions.forEach((question: any, index: number) => {
       const userAnswer = answers[index]

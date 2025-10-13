@@ -24,13 +24,21 @@ export default function NewsPage() {
     loadNews()
   }, [])
 
-  const loadNews = async () => {
+  const loadNews = async (forceRefresh = false) => {
     setLoading(true)
     
     try {
-      const response = await fetch("/api/news")
+      // Add timestamp parameter to force fresh data when refreshing
+      const url = forceRefresh ? `/api/news?refresh=true&t=${Date.now()}` : `/api/news`
+      const response = await fetch(url, {
+        cache: forceRefresh ? 'no-store' : 'default',
+        headers: forceRefresh ? {
+          'Cache-Control': 'no-cache'
+        } : {}
+      })
       const data = await response.json()
       setArticles(data.articles || [])
+      console.log(`Loaded ${data.articles?.length || 0} articles${forceRefresh ? ' (refreshed)' : ''}`)
     } catch (error) {
       console.error("Failed to load news:", error)
     } finally {
@@ -44,21 +52,22 @@ export default function NewsPage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-              Waste & Energy News
+              Environmental News
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              Latest updates in waste management, recycling, and energy efficiency
+              Latest updates on waste management, pollution, nature conservation, weather, and energy
             </p>
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               <Badge variant="secondary">Waste Management</Badge>
-              <Badge variant="secondary">Energy Efficiency</Badge>
-              <Badge variant="secondary">Recycling</Badge>
-              <Badge variant="secondary">Circular Economy</Badge>
+              <Badge variant="secondary">Pollution</Badge>
+              <Badge variant="secondary">Nature</Badge>
+              <Badge variant="secondary">Weather</Badge>
+              <Badge variant="secondary">Energy</Badge>
             </div>
           </div>
-          <Button onClick={loadNews} variant="outline">
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+          <Button onClick={() => loadNews(true)} variant="outline" disabled={loading}>
+            <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Refreshing...' : 'Refresh'}
           </Button>
         </div>
 

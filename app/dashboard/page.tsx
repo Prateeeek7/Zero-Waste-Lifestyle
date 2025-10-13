@@ -2,18 +2,19 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Plus, TrendingUp, DollarSign, Leaf, Calendar, Upload, X } from "lucide-react"
+import { Plus, TrendingUp, Leaf, Calendar, Upload, X, IndianRupee, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 
 interface WasteLog {
   id: string
+  user_id: string
   category: string
   weight_kg: number
   description: string
@@ -22,30 +23,33 @@ interface WasteLog {
   logged_at: string
 }
 
-interface UserProfile {
+interface Profile {
+  id: string
+  email: string
   name: string
+  avatar_url?: string
   eco_level: number
   total_points: number
   total_co2_saved: number
   total_money_saved: number
 }
 
-const COLORS = ["#10B981", "#3B82F6", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899"]
-
 const CATEGORIES = [
   { value: "plastic", label: "Plastic" },
   { value: "paper", label: "Paper" },
+  { value: "food", label: "Food" },
   { value: "glass", label: "Glass" },
   { value: "metal", label: "Metal" },
-  { value: "food", label: "Food/Organic" },
   { value: "ewaste", label: "E-Waste" },
   { value: "other", label: "Other" },
 ]
 
+const COLORS = ["#10B981", "#3B82F6", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899", "#6B7280"]
+
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<any>(null)
-  const [profile, setProfile] = useState<UserProfile | null>(null)
+  const [profile, setProfile] = useState<Profile | null>(null)
   const [wasteLogs, setWasteLogs] = useState<WasteLog[]>([])
   const [loading, setLoading] = useState(true)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -60,58 +64,223 @@ export default function DashboardPage() {
   }, [])
 
   const checkUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    
-    if (!user) {
-      router.push("/auth/signin")
-      return
-    }
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser()
+      
+      if (error) {
+        console.error("Error getting user:", error)
+        router.push("/auth/signin")
+        return
+      }
+      
+      if (!user) {
+        router.push("/auth/signin")
+        return
+      }
 
-    setUser(user)
-    await loadData(user.id)
+      setUser(user)
+      await loadData(user.id)
+    } catch (error) {
+      console.error("Error in checkUser:", error)
+      router.push("/auth/signin")
+    }
   }
 
   const loadData = async (userId: string) => {
     setLoading(true)
     
-    // Load profile
-    const { data: profileData } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single()
+    try {
+      // Load profile
+      const { data: profileData, error: profileError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single()
 
-    if (profileData) setProfile(profileData)
+      if (profileError && profileError.code === 'PGRST116') {
+        // Profile doesn't exist, create it automatically
+        await createUserProfile(userId)
+        
+        // Try loading again
+        const { data: newProfileData } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", userId)
+          .single()
+        
+        if (newProfileData) {
+          setProfile(newProfileData)
+        }
+      } else if (profileData) {
+        setProfile(profileData)
+      }
 
-    // Load waste logs
-    const { data: logsData } = await supabase
-      .from("waste_logs")
-      .select("*")
-      .eq("user_id", userId)
-      .order("logged_at", { ascending: false })
-      .limit(50)
+      // Load waste logs
+      const { data: logsData, error: logsError } = await supabase
+        .from("waste_logs")
+        .select("*")
+        .eq("user_id", userId)
+        .order("logged_at", { ascending: false })
+        .limit(50)
 
-    if (logsData) setWasteLogs(logsData)
-    
-    setLoading(false)
+      if (logsData) {
+        setWasteLogs(logsData)
+      } else if (logsError) {
+        console.error("Error loading waste logs:", logsError)
+        setWasteLogs([]) // Set empty array as fallback
+      }
+      
+    } catch (error) {
+      console.error("Error in loadData:", error)
+      // Set fallback data to prevent crashes
+      if (!profile) {
+        setProfile({
+          id: userId,
+          email: user?.email || '',
+          name: user?.user_metadata?.name || user?.email || 'User',
+          eco_level: 1,
+          total_points: 0,
+          total_co2_saved: 0,
+          total_money_saved: 0,
+        })
+      }
+      setWasteLogs([])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const createUserProfile = async (userId: string) => {
+    try {
+      const { error } = await supabase
+        .from("profiles")
+        .insert({
+          id: userId,
+          email: user?.email || '',
+          name: user?.user_metadata?.name || user?.email || 'User',
+          eco_level: 1,
+          total_points: 0,
+          total_co2_saved: 0,
+          total_money_saved: 0,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+      
+      if (error) {
+        console.error("Error creating profile:", error)
+        throw error
+      }
+    } catch (error) {
+      console.error("Failed to create profile:", error)
+      throw error
+    }
+  }
+
+  const calculateCO2Savings = (category: string, weight: number) => {
+    const rates: Record<string, number> = {
+      plastic: 2.5,
+      paper: 0.9,
+      glass: 0.3,
+      metal: 1.5,
+      ewaste: 4.0,
+      food: 0.5,
+      other: 0.5,
+    }
+    return weight * (rates[category] || 0.5)
+  }
+
+  const calculateMoneySavings = (category: string, weight: number) => {
+    const rates: Record<string, number> = {
+      plastic: 0.50,
+      paper: 0.10,
+      glass: 0.05,
+      metal: 0.75,
+      ewaste: 2.00,
+      food: 0.20,
+      other: 0.20,
+    }
+    return weight * (rates[category] || 0.20)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!user) return
+    if (!user) {
+      alert("Please sign in to log waste entries")
+      return
+    }
 
-    const { error } = await supabase.from("waste_logs").insert({
-      user_id: user.id,
-      category: formData.category,
-      weight_kg: parseFloat(formData.weight_kg),
-      description: formData.description,
-    })
+    try {
+      const weight = parseFloat(formData.weight_kg)
+      
+      if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid weight greater than 0")
+        return
+      }
 
-    if (!error) {
-      setDialogOpen(false)
-      setFormData({ category: "plastic", weight_kg: "", description: "" })
-      await loadData(user.id)
+      const co2_saved = calculateCO2Savings(formData.category, weight)
+      const money_saved = calculateMoneySavings(formData.category, weight)
+
+      const { error } = await supabase.from("waste_logs").insert({
+        user_id: user.id,
+        category: formData.category,
+        weight_kg: weight,
+        description: formData.description,
+        co2_saved: co2_saved,
+        money_saved: money_saved,
+      })
+
+      if (!error) {
+        // Update profile stats immediately
+        await updateProfileStats(user.id, co2_saved, money_saved, weight)
+        
+        setDialogOpen(false)
+        setFormData({ category: "plastic", weight_kg: "", description: "" })
+        await loadData(user.id)
+        
+        alert("Waste entry logged successfully! 🎉")
+      } else {
+        console.error("Error saving waste log:", error)
+        alert(`Failed to save waste log: ${error.message || 'Unknown error'}. Please try again.`)
+      }
+    } catch (error) {
+      console.error("Error in handleSubmit:", error)
+      alert("An unexpected error occurred. Please try again.")
+    }
+  }
+
+  const updateProfileStats = async (userId: string, co2_saved: number, money_saved: number, weight: number) => {
+    try {
+      const pointsToAdd = Math.ceil(weight * 10)
+      
+      // Get current profile
+      const { data: currentProfile, error: fetchError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single()
+
+      if (fetchError) {
+        console.error("Error fetching profile for update:", fetchError)
+        return
+      }
+
+      // Update profile with new stats
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({
+          total_co2_saved: (currentProfile?.total_co2_saved ?? 0) + co2_saved,
+          total_money_saved: (currentProfile?.total_money_saved ?? 0) + money_saved,
+          total_points: (currentProfile?.total_points ?? 0) + pointsToAdd,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", userId)
+
+      if (updateError) {
+        console.error("Error updating profile stats:", updateError)
+      }
+    } catch (error) {
+      console.error("Error in updateProfileStats:", error)
     }
   }
 
@@ -163,66 +332,77 @@ export default function DashboardPage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-              Welcome, {profile?.name}!
+              Welcome, {profile?.name || user?.email || 'User'}!
             </h1>
             <p className="text-gray-600 dark:text-gray-300">Track your sustainability journey</p>
           </div>
           
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-green-600 hover:bg-green-700">
-                <Plus className="w-4 h-4 mr-2" />
-                Log Waste
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Log Waste Entry</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">Category</label>
-                  <Select value={formData.category} onValueChange={(v) => setFormData({ ...formData, category: v })}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {CATEGORIES.map((cat) => (
-                        <SelectItem key={cat.value} value={cat.value}>
-                          {cat.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-1">Weight (kg)</label>
-                  <Input
-                    type="number"
-                    step="0.1"
-                    placeholder="0.5"
-                    value={formData.weight_kg}
-                    onChange={(e) => setFormData({ ...formData, weight_kg: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">Description (Optional)</label>
-                  <Input
-                    placeholder="e.g., plastic bottles"
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  />
-                </div>
-
-                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                  Save Entry
+          <div className="flex gap-3">
+            <Button 
+              onClick={() => user && loadData(user.id)} 
+              variant="outline"
+              disabled={loading}
+            >
+              <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+              {loading ? 'Refreshing...' : 'Refresh Data'}
+            </Button>
+            
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-green-600 hover:bg-green-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Log Waste
                 </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Log Waste Entry</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Category</label>
+                    <Select value={formData.category} onValueChange={(v) => setFormData({ ...formData, category: v })}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CATEGORIES.map((cat) => (
+                          <SelectItem key={cat.value} value={cat.value}>
+                            {cat.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Weight (kg)</label>
+                    <Input
+                      type="number"
+                      step="0.1"
+                      placeholder="0.5"
+                      value={formData.weight_kg}
+                      onChange={(e) => setFormData({ ...formData, weight_kg: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Description (Optional)</label>
+                    <Input
+                      placeholder="e.g., plastic bottles"
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
+                    Save Entry
+                  </Button>
+                </form>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
 
         {/* Stats Cards */}
@@ -233,9 +413,12 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-green-600 dark:text-green-400">
-                {profile?.total_points || 0}
+                {profile?.total_points ?? 0}
               </div>
-              <p className="text-xs text-gray-500 mt-1">Level {profile?.eco_level}</p>
+              <div className="flex items-center text-green-600 text-sm mt-1">
+                <TrendingUp className="w-3 h-3 mr-1" />
+                Eco Level {profile?.eco_level ?? 1}
+              </div>
             </CardContent>
           </Card>
 
@@ -245,9 +428,9 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                {profile?.total_co2_saved?.toFixed(2) || 0} kg
+                {(profile?.total_co2_saved ?? 0).toFixed(2)} kg
               </div>
-              <div className="flex items-center text-green-600 text-sm mt-1">
+              <div className="flex items-center text-blue-600 text-sm mt-1">
                 <Leaf className="w-3 h-3 mr-1" />
                 Environmental impact
               </div>
@@ -260,10 +443,10 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
-                ${profile?.total_money_saved?.toFixed(2) || 0}
+                ₹{(profile?.total_money_saved ?? 0).toLocaleString('en-IN')}
               </div>
               <div className="flex items-center text-green-600 text-sm mt-1">
-                <DollarSign className="w-3 h-3 mr-1" />
+                <IndianRupee className="w-3 h-3 mr-1" />
                 Financial benefit
               </div>
             </CardContent>
@@ -293,14 +476,17 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={getWeeklyData()}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="day" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="weight" stroke="#10B981" name="Weight (kg)" />
-                </LineChart>
+                <BarChart data={getWeeklyData()}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
+                  <XAxis dataKey="day" className="text-sm text-gray-600 dark:text-gray-400" />
+                  <YAxis className="text-sm text-gray-600 dark:text-gray-400" />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '8px' }}
+                    labelStyle={{ color: '#333' }}
+                    itemStyle={{ color: '#333' }}
+                  />
+                  <Bar dataKey="weight" fill="#10B981" radius={[4, 4, 0, 0]} />
+                </BarChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
@@ -317,16 +503,22 @@ export default function DashboardPage() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={(entry) => entry.name}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
+                    nameKey="name"
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                   >
                     {getCategoryData().map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '8px' }}
+                    labelStyle={{ color: '#333' }}
+                    itemStyle={{ color: '#333' }}
+                  />
+                  <Legend />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
