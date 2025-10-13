@@ -50,7 +50,7 @@ export default function HomePage() {
         .from("profiles")
         .select("total_co2_saved")
 
-      const totalCO2 = co2Data?.reduce((sum, profile) => sum + (profile.total_co2_saved || 0), 0) || 0
+      const totalCO2 = co2Data?.reduce((sum: number, profile: any) => sum + (profile.total_co2_saved || 0), 0) || 0
 
       setStats([
         { value: `${userCount || 0}+`, label: "Active Users" },
