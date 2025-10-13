@@ -15,7 +15,7 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, error } = useChat({
     api: "/api/chat",
     initialMessages: [
       {
@@ -25,6 +25,9 @@ export default function ChatPage() {
           'Hello! I\'m your Zero Waste AI Assistant. I\'m here to help you with:\n\n🗂️ **Waste disposal questions** - "How do I dispose of old electronics?"\n♻️ **Recycling guidance** - "Is this pizza box recyclable?"\n🌱 **Sustainability tips** - "How can I reduce plastic in my kitchen?"\n📸 **Image analysis** - Upload photos of items for disposal advice\n\nWhat would you like to know about sustainable living?',
       },
     ],
+    onError: (error) => {
+      console.error('Chat error:', error)
+    },
   })
 
   const scrollToBottom = () => {
@@ -155,6 +158,13 @@ export default function ChatPage() {
 
           {/* Input Area */}
           <div className="p-6 border-t border-gray-200 dark:border-gray-700">
+            {error && (
+              <div className="mb-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                <span className="text-sm text-red-700 dark:text-red-300">
+                  ⚠️ Error: {error.message || 'Failed to send message. Please try again.'}
+                </span>
+              </div>
+            )}
             {imageFile && (
               <div className="mb-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg flex items-center justify-between">
                 <span className="text-sm text-green-700 dark:text-green-300 flex items-center">
