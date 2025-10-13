@@ -1,20 +1,22 @@
-import { streamText } from "ai"
-import { createGroq } from "@ai-sdk/groq"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
   try {
     const { messages, userId } = await req.json()
+    console.log('Received messages:', messages?.length || 0)
 
-    const apiKey = process.env.LLAMA_API_KEY
+    const apiKey = process.env.GEMINI_API_KEY
 
     if (!apiKey) {
-      console.error("LLAMA_API_KEY is not configured")
+      console.error("GEMINI_API_KEY is not configured")
       return NextResponse.json(
         { error: "Server configuration error: API key is not set." },
         { status: 500 }
       )
     }
+    
+    console.log('API Key configured, proceeding with Gemini...')
 
     // Get user context if userId provided
     let userContext = ""
@@ -41,13 +43,13 @@ export async function POST(req: Request) {
       }
     }
 
-    const groq = createGroq({
-      apiKey: apiKey,
-    })
+    const genAI = new GoogleGenerativeAI(apiKey)
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" })
+    
+    console.log('Creating Gemini chat...')
 
-    const result = await streamText({
-      model: groq("llama3-70b-8192") as any,
-      system: `You are a Zero Waste AI Assistant powered by Meta LLaMA 3, an expert in sustainable living, waste management, and environmental conservation. Your role is to help users:
+    // Format messages for Gemini
+    const systemPrompt = `You are a Zero Waste AI Assistant powered by Google Gemini, an expert in sustainable living, waste management, and environmental conservation. Your role is to help users:
 
 🌱 **Waste Disposal Guidance**: Provide specific instructions for disposing of various items safely and sustainably
 
@@ -72,13 +74,44 @@ export async function POST(req: Request) {
 - For food waste: "Fruit peels and vegetable scraps can go in home compost. Avoid meat/dairy in home bins - use municipal composting if available."
 - For plastics: "Check the recycling number: #1 (PET) and #2 (HDPE) are widely recyclable. Clean containers and remove labels first."
 
-Always prioritize environmental safety and provide practical solutions that users can actually implement in their daily lives.${userContext}`,
-      messages,
-      maxTokens: 1000,
-      temperature: 0.7,
+Always prioritize environmental safety and provide practical solutions that users can actually implement in their daily lives.${userContext}`
+
+    // Get conversation history
+    const history = messages.slice(0, -1).map((msg: any) => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.content }],
+    }))
+
+    // Get the last user message
+    const userMessage = messages[messages.length - 1]?.content || ''
+
+    // Start chat with history
+    const chat = model.startChat({
+      history: [
+        {
+          role: 'user',
+          parts: [{ text: 'You are a helpful assistant. ' + systemPrompt }],
+        },
+        {
+          role: 'model',
+          parts: [{ text: 'I understand. I am a Zero Waste AI Assistant ready to help with sustainable living, waste management, and environmental questions. How can I assist you today?' }],
+        },
+        ...history,
+      ],
     })
 
-    return result.toDataStreamResponse()
+    // Send message and get response
+    console.log('Sending message to Gemini:', userMessage)
+    const result = await chat.sendMessage(userMessage)
+    const response = result.response
+    const text = response.text()
+    
+    console.log('Got response from Gemini, length:', text.length)
+
+    return NextResponse.json({
+      role: 'assistant',
+      content: text,
+    })
   } catch (error) {
     console.error("Chat API error:", error)
     return NextResponse.json(
