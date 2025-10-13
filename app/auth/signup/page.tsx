@@ -79,10 +79,18 @@ export default function SignUpPage() {
           data: {
             name: formData.name,
           },
+          emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       })
 
       if (authError) throw authError
+
+      // Check if email confirmation is required
+      if (authData.user && !authData.session) {
+        setError("Please check your email to confirm your account before signing in.")
+        setLoading(false)
+        return
+      }
 
       if (authData.user) {
         // Check if profile already exists
