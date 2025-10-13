@@ -6,7 +6,7 @@ import { UserPlus, Mail, Lock, User, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { supabase } from "@/lib/supabase"
+import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -21,6 +21,30 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
+
+  // Check if Supabase is configured
+  if (!isSupabaseConfigured()) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-900 pt-20">
+        <div className="max-w-md mx-auto px-4 py-8">
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl">
+            <CardContent className="p-8 text-center">
+              <AlertCircle className="w-16 h-16 mx-auto text-red-500 mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Configuration Error
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Supabase is not configured. Please check your environment variables.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/">Go Home</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
