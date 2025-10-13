@@ -257,7 +257,7 @@ flowchart TD
 
 </div>
 
-```bash
+    ```bash
 zero-waste-lifestyle/
 ├── 📱 app/                          # Next.js App Router
 │   ├── 🔌 api/                      # API Routes
@@ -352,13 +352,13 @@ cd Zero-Waste-Lifestyle
 
 ### **Step 2: Install Dependencies**
 
-```bash
-npm install
+   ```bash
+    npm install
 # or
 pnpm install
-# or
-yarn install
-```
+    # or
+    yarn install
+   ```
 
 ### **Step 3: Environment Setup**
 
@@ -366,7 +366,7 @@ Create `.env.local` in project root:
 
 ```env
 # AI Services (Both FREE!)
-LLAMA_API_KEY=gsk_YOUR_GROQ_API_KEY_HERE
+    LLAMA_API_KEY=gsk_YOUR_GROQ_API_KEY_HERE
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
 
 # Supabase (FREE Tier Available)
@@ -406,7 +406,7 @@ supabase db push
 
 ### **Step 5: Launch Development Server**
 
-```bash
+    ```bash
 npm run dev
 ```
 

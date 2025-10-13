@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { useChat } from "ai/react"
 import { supabase } from "@/lib/supabase"
+import ReactMarkdown from 'react-markdown'
 
 interface Message {
   id: string
@@ -35,7 +36,7 @@ export default function WasteBot() {
     getUserId()
   }, [])
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
     api: "/api/chat",
     body: { userId },
     initialMessages: [
@@ -46,6 +47,9 @@ export default function WasteBot() {
           "Hi! I'm your Zero Waste AI Assistant. I can help you with waste disposal questions, sustainability tips, and eco-friendly alternatives. I also have access to your waste logging history to provide personalized recommendations!",
       },
     ],
+    onError: (error) => {
+      console.error('WasteBot error:', error)
+    },
   })
 
   const scrollToBottom = () => {
@@ -150,7 +154,25 @@ export default function WasteBot() {
                             : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
                         }`}
                       >
-                        <p className="text-sm">{message.content}</p>
+                        {message.role === "user" ? (
+                          <p className="text-sm">{message.content}</p>
+                        ) : (
+                          <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                            <ReactMarkdown
+                              components={{
+                                p: ({node, ...props}) => <p className="mb-1 text-sm" {...props} />,
+                                ul: ({node, ...props}) => <ul className="list-disc ml-3 mb-1 text-sm" {...props} />,
+                                ol: ({node, ...props}) => <ol className="list-decimal ml-3 mb-1 text-sm" {...props} />,
+                                li: ({node, ...props}) => <li className="mb-0.5 text-sm" {...props} />,
+                                strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
+                                em: ({node, ...props}) => <em className="italic" {...props} />,
+                                code: ({node, ...props}) => <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded text-xs" {...props} />,
+                              }}
+                            >
+                              {message.content}
+                            </ReactMarkdown>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>
@@ -182,6 +204,13 @@ export default function WasteBot() {
 
               {/* Input */}
               <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                {error && (
+                  <div className="mb-2 p-2 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                    <span className="text-xs text-red-700 dark:text-red-300">
+                      ⚠️ {error.message || 'Error sending message'}
+                    </span>
+                  </div>
+                )}
                 {imageFile && (
                   <div className="mb-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg flex items-center justify-between">
                     <span className="text-sm text-green-700 dark:text-green-300">📷 {imageFile.name}</span>
