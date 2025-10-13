@@ -1,10 +1,12 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Leaf, Recycle, BookOpen, MessageCircle, CheckSquare, Play } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { supabase } from "@/lib/supabase"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -21,6 +23,46 @@ const staggerContainer = {
 }
 
 export default function HomePage() {
+  const [stats, setStats] = useState([
+    { value: "...", label: "Active Users" },
+    { value: "...", label: "Waste Logs" },
+    { value: "...", label: "CO₂ Saved (kg)" },
+  ])
+
+  useEffect(() => {
+    loadStats()
+  }, [])
+
+  const loadStats = async () => {
+    try {
+      // Get total users
+      const { count: userCount } = await supabase
+        .from("profiles")
+        .select("*", { count: 'exact', head: true })
+
+      // Get total waste logs
+      const { count: logsCount } = await supabase
+        .from("waste_logs")
+        .select("*", { count: 'exact', head: true })
+
+      // Get total CO2 saved
+      const { data: co2Data } = await supabase
+        .from("profiles")
+        .select("total_co2_saved")
+
+      const totalCO2 = co2Data?.reduce((sum, profile) => sum + (profile.total_co2_saved || 0), 0) || 0
+
+      setStats([
+        { value: `${userCount || 0}+`, label: "Active Users" },
+        { value: `${logsCount || 0}+`, label: "Waste Logs" },
+        { value: `${Math.round(totalCO2)}kg`, label: "CO₂ Saved" },
+      ])
+    } catch (error) {
+      console.error("Error loading stats:", error)
+      // Keep default loading values on error
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-900">
       {/* Hero Section */}
@@ -216,10 +258,4 @@ const features = [
     icon: Play,
     href: "/videos",
   },
-]
-
-const stats = [
-  { value: "10K+", label: "Active Learners" },
-  { value: "500+", label: "Educational Resources" },
-  { value: "95%", label: "User Satisfaction" },
 ]
