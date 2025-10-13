@@ -2,19 +2,41 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Moon, Sun, Menu, X, Leaf } from "lucide-react"
+import { Moon, Sun, Menu, X, Leaf, Power } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [user, setUser] = useState<any>(null)
   const { theme, setTheme } = useTheme()
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
+    checkUser()
   }, [])
+
+  const checkUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    setUser(user)
+  }
+
+  const handleAuthClick = async () => {
+    if (user) {
+      // Logout
+      await supabase.auth.signOut()
+      setUser(null)
+      router.push('/')
+    } else {
+      // Redirect to signin
+      router.push('/auth/signin')
+    }
+  }
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -56,17 +78,31 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          {/* Theme Toggle, Auth & Mobile Menu */}
+          <div className="flex items-center space-x-2">
             {mounted && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-9 h-9 p-0"
-              >
-                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              </Button>
+              <>
+                {/* Login/Logout Button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleAuthClick}
+                  className="w-9 h-9 p-0"
+                  title={user ? "Logout" : "Login"}
+                >
+                  <Power className={`w-4 h-4 ${user ? 'text-green-600' : 'text-gray-600'}`} />
+                </Button>
+
+                {/* Theme Toggle */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-9 h-9 p-0"
+                >
+                  {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                </Button>
+              </>
             )}
 
             {/* Mobile Menu Button */}

@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Send, Bot, User, ImageIcon, Trash2 } from "lucide-react"
+import ReactMarkdown from 'react-markdown'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
@@ -126,7 +127,25 @@ export default function ChatPage() {
                         : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white"
                     }`}
                   >
-                    <div className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</div>
+                    {message.role === "user" ? (
+                      <div className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</div>
+                    ) : (
+                      <div className="prose prose-sm dark:prose-invert max-w-none">
+                        <ReactMarkdown
+                          components={{
+                            p: ({node, ...props}) => <p className="mb-2" {...props} />,
+                            ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-2" {...props} />,
+                            ol: ({node, ...props}) => <ol className="list-decimal ml-4 mb-2" {...props} />,
+                            li: ({node, ...props}) => <li className="mb-1" {...props} />,
+                            strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
+                            em: ({node, ...props}) => <em className="italic" {...props} />,
+                            code: ({node, ...props}) => <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded" {...props} />,
+                          }}
+                        >
+                          {message.content}
+                        </ReactMarkdown>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
