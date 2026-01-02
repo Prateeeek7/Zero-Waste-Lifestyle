@@ -680,31 +680,6 @@ style: Improve dashboard UI
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Prateeeek7/Zero-Waste-Lifestyle)
 
 </div>
-
-```bash
-# Method 1: Use Vercel Button (easiest)
-# Click the button above
-
-# Method 2: Vercel CLI
-npm i -g vercel
-vercel --prod
-
-# Method 3: GitHub Integration
-# Connect repo to Vercel dashboard
-```
-
-**Don't forget to add environment variables in Vercel settings!**
-
-### **Other Deployment Options**
-
-| Platform | Difficulty | Best For |
-|----------|------------|----------|
-| **Vercel** | ⭐ Easy | Next.js apps (recommended) |
-| **Netlify** | ⭐⭐ Medium | Static sites + functions |
-| **Railway** | ⭐⭐ Medium | Full-stack apps |
-| **AWS Amplify** | ⭐⭐⭐ Hard | Enterprise deployment |
-| **Self-hosted** | ⭐⭐⭐⭐ Expert | Custom infrastructure |
-
 <!-- API Documentation -->
 <div align="center">
   
