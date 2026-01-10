@@ -250,64 +250,6 @@ flowchart TD
     style E fill:#f59e0b,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-<!-- Repository Structure -->
-<div align="center">
-  
-## 📂 **Repository Structure**
-
-</div>
-
-    ```bash
-zero-waste-lifestyle/
-├── 📱 app/                          # Next.js App Router
-│   ├── 🔌 api/                      # API Routes
-│   │   ├── chat/route.ts           # 💬 AI Chatbot (LLaMA 3)
-│   │   ├── classify/route.ts       # 🖼️ Image Classifier (Gemini)
-│   │   ├── quiz/route.ts           # 🧩 Quiz Engine
-│   │   ├── news/route.ts           # 📰 News Feed
-│   │   └── auth/[...nextauth]/     # 🔐 Authentication
-│   ├── 🎨 Pages/
-│   │   ├── dashboard/              # 📊 User Dashboard
-│   │   ├── classifier/             # 🤖 AI Waste Classifier
-│   │   ├── map/                    # 🗺️ Interactive Map
-│   │   ├── quiz/                   # 🧩 Knowledge Quiz
-│   │   ├── badges/                 # 🎖️ Achievement System
-│   │   ├── leaderboard/            # 🏆 Global Rankings
-│   │   ├── news/                   # 📰 News Feed
-│   │   ├── analytics/              # 📈 Predictive Analytics
-│   │   ├── calculator/             # 💰 Impact Calculator
-│   │   └── ... 15+ more pages
-├── 🎨 components/                   # React Components
-│   ├── ui/                         # shadcn/ui Library
-│   ├── interactive-map.tsx         # 🗺️ Map Component
-│   ├── leaflet-map.tsx             # 🗺️ Leaflet Integration
-│   ├── navbar.tsx                  # Navigation
-│   ├── footer.tsx                  # Footer
-│   └── waste-bot.tsx              # 🤖 Floating Chatbot
-├── 📚 data/                        # Static Data
-│   ├── quiz-database.json         # 100+ Questions
-│   ├── quiz.md                    # Original Quiz
-│   └── waste-categories.json      # Waste Type Data
-├── 🔧 lib/                         # Utilities
-│   ├── supabase.ts                # Supabase Client
-│   └── utils.ts                   # Helper Functions
-├── 🌐 public/                      # Static Assets
-│   ├── manifest.json              # PWA Manifest
-│   ├── sw.js                      # Service Worker
-│   └── icons/                     # App Icons
-├── 📝 Configuration Files
-│   ├── .env.local                 # Environment Variables
-│   ├── .gitignore                 # Git Ignore Rules
-│   ├── next.config.mjs            # Next.js Config
-│   ├── tailwind.config.ts         # Tailwind Config
-│   ├── tsconfig.json              # TypeScript Config
-│   └── package.json               # Dependencies
-└── 📖 Documentation
-    ├── README.md                  # This File
-    ├── supabase-schema.sql        # Database Schema
-    ├── SETUP_INSTRUCTIONS.md      # Setup Guide
-    └── QUICK_REFERENCE.md         # Quick Start
-```
 
 <!-- Installation Guide -->
 <div align="center">
